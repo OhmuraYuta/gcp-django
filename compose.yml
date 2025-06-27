@@ -1,0 +1,9 @@
+services:
+  django:
+    build: .
+    volumes:
+      - ./dir:/workdir
+    tty: true
+    stdin_open: true
+    ports:
+      - "80:80"
