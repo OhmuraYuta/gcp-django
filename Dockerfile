@@ -1,11 +1,9 @@
 FROM debian:bookworm-slim
 RUN apt-get update &&\
 	apt-get upgrade -y &&\
-	apt-get install -y locales python3-pip python3.11-venv apache2 &&\
+	apt-get install -y locales python3-django apache2 &&\
 	locale-gen ja_JP.UTF-8 &&\
-	echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc &&\
-    python3 -m venv venv &&\
-    . venv/bin/activate &&\
-    pip install --upgrade pip &&\
-    pip install django
-CMD ["apachectl", "-D", "FOREGROUND"]
+	echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
+COPY startup.sh /startup.sh
+RUN chmod 744 /startup.sh
+CMD ["/startup.sh"]
