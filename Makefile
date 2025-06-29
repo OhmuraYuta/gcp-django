@@ -9,3 +9,5 @@ down:
 
 bash:
 	@docker compose exec django bash
+rs:
+	@docker compose restart
